@@ -1,4 +1,3 @@
-// pages/index.tsx
 import Image from 'next/image';
 import { useState } from 'react';
 import localProfileImg from '../public/foto.jpg';
@@ -51,11 +50,11 @@ export default function Home() {
     },
   ];
 
-  // Definisikan platforms sebagai tuple readonly
-  const platforms = ['GitHub', 'Instagram', 'Email'] as const;
-
-  // Definisikan tipe Platform berdasarkan platforms
-  type Platform = typeof platforms[number];
+  // Definisikan platforms sebagai array konstan
+  const PLATFORMS = ['GitHub', 'Instagram', 'Email'] as const;
+  
+  // Definisikan tipe Platform
+  type Platform = typeof PLATFORMS[number];
 
   const links: Record<Platform, string> = {
     GitHub: 'https://github.com/rukmanatech',
@@ -67,6 +66,27 @@ export default function Home() {
     GitHub: <FaGithub />,
     Instagram: <FaInstagram />,
     Email: <FaEnvelope />,
+  };
+
+  // Helper function untuk type guard
+  const isPlatform = (value: string): value is Platform => {
+    return PLATFORMS.includes(value as Platform);
+  };
+
+  // Fungsi untuk mendapatkan link yang aman
+  const getSafeLink = (platform: string): string => {
+    if (isPlatform(platform)) {
+      return links[platform];
+    }
+    return '#';
+  };
+
+  // Fungsi untuk mendapatkan icon yang aman
+  const getSafeIcon = (platform: string): JSX.Element | null => {
+    if (isPlatform(platform)) {
+      return icons[platform];
+    }
+    return null;
   };
   return (
     <main className="min-h-screen bg-[#030712] text-white">
@@ -182,17 +202,17 @@ export default function Home() {
 
                   {/* Social Links */}
                   <div className="flex gap-4 justify-center lg:justify-start">
-                    {['GitHub', 'Instagram', 'Email'].map((platform) => (
-                      <a
-                        key={platform}
-                        href={links[platform]}
-                        className="flex items-center gap-2 px-6 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition-all duration-300"
-                      >
-                        {icons[platform]}
-                        <span>{platform}</span>
-                      </a>
-                    ))}
-                  </div>
+        {PLATFORMS.map((platform) => (
+          <a
+            key={platform}
+            href={getSafeLink(platform)}
+            className="flex items-center gap-2 px-6 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition-all duration-300"
+          >
+            {getSafeIcon(platform)}
+            <span>{platform}</span>
+          </a>
+        ))}
+      </div>
                 </div>
               </div>
             </div>
@@ -277,18 +297,18 @@ export default function Home() {
               </p>
 
               <div className="flex gap-4 mt-2">
-                {['GitHub', 'Instagram', 'Email'].map((platform) => (
-                  <a
-                    key={platform}
-                    href={links[platform]}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition-all duration-300"
-                  >
-                    {icons[platform]}
-                  </a>
-                ))}
-              </div>
+        {PLATFORMS.map((platform) => (
+          <a
+            key={platform}
+            href={getSafeLink(platform)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition-all duration-300"
+          >
+            {getSafeIcon(platform)}
+          </a>
+        ))}
+      </div>
 
               <div className="mt-4 text-sm text-gray-400">
                 © {new Date().getFullYear()} Zaki Rafi. All rights reserved.
