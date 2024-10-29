@@ -9,6 +9,9 @@ import { FaGithub, FaInstagram, FaEnvelope } from 'react-icons/fa';
 export default function Home() {
   const [isReadMore, setIsReadMore] = useState(false);
 
+  // Tipe untuk Platform
+  type Platform = 'GitHub' | 'Instagram' | 'Email';
+
   // Data Skills
   const skills = [
     {
@@ -37,7 +40,7 @@ export default function Home() {
       title: 'Analisa Kesehatan Gigi',
       description:
         'Aplikasi web untuk analisa kesehatan gigi menggunakan AI. Memberikan hasil analisis dan rekomendasi perawatan berdasarkan data yang diinput.',
-      stack: ['Next.js', 'OpenAI API', 'TypeScript', 'TailwindCSS'],
+      stack: ['Next.js', 'OpenAI API', 'TailwindCSS'],
       thumbnail: imagePorto,
       link: 'https://analisa-gigi.vercel.app',
     },
@@ -45,23 +48,25 @@ export default function Home() {
       title: 'E-Rapor',
       description:
         'E-Rapor adalah aplikasi berbasis web yang dirancang untuk memudahkan proses pengisian dan pengelolaan nilai siswa secara digital. Dengan E-Rapor, guru dapat memasukkan nilai, mencetak rapor, dan memantau perkembangan siswa dengan lebih efisien.',
-      stack: ['React', 'TypeScript', 'TailwindCSS', 'Next.js'],
+      stack: ['React', 'Next.js'],
       thumbnail: imagePorto2,
       link: 'https://e-rapor.vercel.app',
     },
   ];
 
-  const links = {
+  const links: Record<Platform, string> = {
     GitHub: 'https://github.com/rukmanatech',
     Instagram: 'https://instagram.com/zkirafi',
     Email: 'mailto:rukmanazaki@gmail.com',
   };
 
-  const icons = {
+  const icons: Record<Platform, JSX.Element> = {
     GitHub: <FaGithub />,
     Instagram: <FaInstagram />,
     Email: <FaEnvelope />,
   };
+
+  const platforms: Platform[] = ['GitHub', 'Instagram', 'Email'];
 
   return (
     <main className="min-h-screen bg-[#030712] text-white">
