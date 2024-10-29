@@ -37,7 +37,7 @@ export default function Home() {
       title: 'Analisa Kesehatan Gigi',
       description:
         'Aplikasi web untuk analisa kesehatan gigi menggunakan AI. Memberikan hasil analisis dan rekomendasi perawatan berdasarkan data yang diinput.',
-      stack: ['Next.js', 'OpenAI API', 'TailwindCSS'],
+      stack: ['Next.js', 'Gemini API', 'TailwindCSS'],
       thumbnail: imagePorto,
       link: 'https://analisa-gigi.vercel.app',
     },
@@ -45,9 +45,9 @@ export default function Home() {
       title: 'E-Rapor',
       description:
         'E-Rapor adalah aplikasi berbasis web yang dirancang untuk memudahkan proses pengisian dan pengelolaan nilai siswa secara digital. Dengan E-Rapor, guru dapat memasukkan nilai, mencetak rapor, dan memantau perkembangan siswa dengan lebih efisien.',
-      stack: ['React', 'Next.js'],
+      stack: ['React', 'TailwindCSS', 'Typecript', 'Next.js'],
       thumbnail: imagePorto2,
-      link: 'https://e-rapor.vercel.app',
+      link: 'https://e-raport.vercel.app',
     },
   ];
 
@@ -201,7 +201,7 @@ export default function Home() {
         </section>
 
         {/* Projects Section */}
-        <section className="flex items-center justify-center px-4 py-10">
+        <section className="flex items-center justify-center px-4 py-2">
           <div className="max-w-6xl w-full">
             <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 md:p-10 border border-white/10">
               <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
