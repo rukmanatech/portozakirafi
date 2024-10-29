@@ -1,3 +1,4 @@
+// pages/index.tsx
 import Image from 'next/image';
 import { useState } from 'react';
 import localProfileImg from '../public/foto.jpg';
@@ -52,7 +53,7 @@ export default function Home() {
 
   // Definisikan platforms sebagai array konstan
   const PLATFORMS = ['GitHub', 'Instagram', 'Email'] as const;
-  
+
   // Definisikan tipe Platform
   type Platform = typeof PLATFORMS[number];
 
@@ -68,26 +69,6 @@ export default function Home() {
     Email: <FaEnvelope />,
   };
 
-  // Helper function untuk type guard
-  const isPlatform = (value: string): value is Platform => {
-    return PLATFORMS.includes(value as Platform);
-  };
-
-  // Fungsi untuk mendapatkan link yang aman
-  const getSafeLink = (platform: string): string => {
-    if (isPlatform(platform)) {
-      return links[platform];
-    }
-    return '#';
-  };
-
-  // Fungsi untuk mendapatkan icon yang aman
-  const getSafeIcon = (platform: string): JSX.Element | null => {
-    if (isPlatform(platform)) {
-      return icons[platform];
-    }
-    return null;
-  };
   return (
     <main className="min-h-screen bg-[#030712] text-white">
       {/* Background Gradients */}
@@ -99,14 +80,14 @@ export default function Home() {
 
       <div className="relative">
         {/* Hero Section */}
-        <section className="flex items-center justify-center px-6 pb-10 pt-10">
+        <section className="flex items-center justify-center px-4 py-10">
           <div className="max-w-6xl w-full mx-auto">
-            <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-8 md:p-12 border border-white/10">
-              <div className="flex flex-col lg:flex-row items-center gap-12">
+            <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 md:p-10 border border-white/10">
+              <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
                 {/* Profile Image */}
                 <div className="relative group">
                   <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full opacity-75 group-hover:opacity-100 blur transition duration-1000" />
-                  <div className="relative w-48 h-48 rounded-full overflow-hidden border-2 border-white/20 hover:border-white/40 transition duration-300">
+                  <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-white/20 hover:border-white/40 transition duration-300">
                     <Image
                       src={localProfileImg}
                       alt="Zaki Rafi"
@@ -118,19 +99,19 @@ export default function Home() {
                 </div>
 
                 {/* Profile Info */}
-                <div className="flex-1 space-y-6 text-center lg:text-left">
+                <div className="flex-1 space-y-4 md:space-y-6 text-center lg:text-left">
                   <div>
-                    <h1 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+                    <h1 className="text-4xl md:text-5xl font-bold mb-2 md:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
                       Zaki Rafi
                     </h1>
-                    <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-500/10 text-blue-300">
+                    <div className="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-blue-500/10 text-blue-300 text-sm md:text-base">
                       AI-Driven Full Stack Developer
                     </div>
                   </div>
 
                   {/* About Section */}
-                  <div className="space-y-4">
-                    <p className="text-lg text-gray-300 leading-relaxed">
+                  <div className="space-y-2 md:space-y-4">
+                    <p className="text-base md:text-lg text-gray-300 leading-relaxed">
                       AI-driven full-stack developer dengan motivasi untuk menciptakan aplikasi web yang inovatif.
                     </p>
 
@@ -139,20 +120,20 @@ export default function Home() {
                         isReadMore ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
                       }`}
                     >
-                      <div className="pt-6 space-y-8">
+                      <div className="pt-4 md:pt-6 space-y-6 md:space-y-8">
                         {/* Skills List */}
-                        <div className="space-y-6">
-                          <h3 className="inline-flex items-center px-4 py-2 rounded-full bg-blue-500/10 text-blue-300">
+                        <div className="space-y-4 md:space-y-6">
+                          <h3 className="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-blue-500/10 text-blue-300 text-sm md:text-base">
                             Keahlian Teknis
                           </h3>
-                          <div className="space-y-4">
+                          <div className="space-y-3 md:space-y-4">
                             {skills.map((skill) => (
                               <div
                                 key={skill.name}
-                                className="group p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300"
+                                className="group p-3 md:p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300"
                               >
-                                <div className="flex gap-4">
-                                  <span className="text-2xl group-hover:scale-110 transition-transform duration-300">
+                                <div className="flex gap-3 md:gap-4">
+                                  <span className="text-xl md:text-2xl group-hover:scale-110 transition-transform duration-300">
                                     {skill.icon}
                                   </span>
                                   <div className="space-y-1">
@@ -168,7 +149,7 @@ export default function Home() {
                             ))}
                           </div>
 
-                          <p className="text-sm text-gray-400 bg-white/5 p-4 rounded-lg">
+                          <p className="text-sm text-gray-400 bg-white/5 p-3 md:p-4 rounded-lg">
                             Fokus utama pada pengembangan aplikasi yang inovatif dan fungsional, mengoptimalkan setiap proses development untuk menghasilkan solusi yang efektif.
                           </p>
                         </div>
@@ -177,13 +158,13 @@ export default function Home() {
                     {/* Read More Button */}
                     <button
                       onClick={() => setIsReadMore(!isReadMore)}
-                      className="mt-4 inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 hover:from-blue-500 hover:to-purple-500 transition-all duration-300 shadow-lg transform hover:-translate-y-1"
+                      className="mt-2 md:mt-4 inline-flex items-center px-5 py-2 md:px-6 md:py-3 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 hover:from-blue-500 hover:to-purple-500 transition-all duration-300 shadow-lg transform hover:-translate-y-1 text-sm md:text-base"
                     >
                       <span className="font-medium">
                         {isReadMore ? 'Tampilkan Lebih Sedikit' : 'Baca Lebih Lanjut'}
                       </span>
                       <svg
-                        className={`w-6 h-6 ml-2 transition-transform duration-300 ${
+                        className={`w-5 h-5 md:w-6 md:h-6 ml-2 transition-transform duration-300 ${
                           isReadMore ? 'rotate-180' : ''
                         }`}
                         fill="none"
@@ -201,18 +182,18 @@ export default function Home() {
                   </div>
 
                   {/* Social Links */}
-                  <div className="flex gap-4 justify-center lg:justify-start">
-        {PLATFORMS.map((platform) => (
-          <a
-            key={platform}
-            href={getSafeLink(platform)}
-            className="flex items-center gap-2 px-6 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition-all duration-300"
-          >
-            {getSafeIcon(platform)}
-            <span>{platform}</span>
-          </a>
-        ))}
-      </div>
+                  <div className="flex flex-wrap gap-3 md:gap-4 justify-center lg:justify-start">
+                    {PLATFORMS.map((platform) => (
+                      <a
+                        key={platform}
+                        href={links[platform]}
+                        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition-all duration-300 text-sm md:text-base"
+                      >
+                        {icons[platform]}
+                        <span>{platform}</span>
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -220,22 +201,22 @@ export default function Home() {
         </section>
 
         {/* Projects Section */}
-        <div className="flex items-center justify-center px-6 pb-10 pt-10">
-          <div className="text-2xl font-bold text-center text-white bg-white/5 backdrop-blur-xl rounded-2xl p-8 md:p-12 border border-white/10 max-w-6xl w-full mx-auto">
-            <h2 className="text-3xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
-              Proyek Unggulan
-            </h2>
+        <section className="flex items-center justify-center px-4 py-10">
+          <div className="max-w-6xl w-full">
+            <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 md:p-10 border border-white/10">
+              <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+                Proyek Unggulan
+              </h2>
 
-            <section className="py-6 px-6 flex items-center justify-center pb-10 pt-10">
-              <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+              <div className="grid sm:grid-cols-2 gap-6">
                 {projects.map((project, index) => (
                   <div
                     key={index}
                     className="group relative rounded-xl overflow-hidden bg-white/5 hover:bg-white/10 transition-all duration-300 border border-white/10"
                   >
-                    <div className="p-6 space-y-4">
+                    <div className="p-4 md:p-6 space-y-3 md:space-y-4">
                       {project.thumbnail && (
-                        <div className="w-full h-48 relative">
+                        <div className="w-full h-40 md:h-48 relative">
                           <Image
                             src={project.thumbnail}
                             alt={project.title}
@@ -246,11 +227,11 @@ export default function Home() {
                         </div>
                       )}
 
-                      <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
+                      <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
                         {project.title}
                       </h3>
 
-                      <p className="text-gray-300 text-sm line-clamp-2">
+                      <p className="text-gray-300 text-sm line-clamp-3">
                         {project.description}
                       </p>
 
@@ -258,7 +239,7 @@ export default function Home() {
                         {project.stack.map((tech) => (
                           <span
                             key={tech}
-                            className="px-3 py-1 text-xs bg-blue-500/10 rounded-full text-blue-300"
+                            className="px-2 py-1 text-xs bg-blue-500/10 rounded-full text-blue-300"
                           >
                             {tech}
                           </span>
@@ -270,8 +251,8 @@ export default function Home() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <button className="mt-2 px-6 py-2 w-full rounded-full bg-gradient-to-r from-[#4263EB] to-purple-500 text-white text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-1">
-                          View Project
+                        <button className="mt-2 px-4 py-2 w-full rounded-full bg-gradient-to-r from-[#4263EB] to-purple-500 text-white text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-1">
+                          Lihat Proyek
                           <span className="transform group-hover:translate-x-1 transition-transform duration-300">
                             →
                           </span>
@@ -281,41 +262,44 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-            </section>
+            </div>
           </div>
-        </div>
+        </section>
+
         {/* Footer Section */}
-        <div className="flex items-center justify-center px-6 pb-10">
-          <div className="max-w-6xl w-full bg-white/5 backdrop-blur-xl rounded-2xl p-8 md:p-12 border border-white/10">
-            <div className="flex flex-col items-center gap-4">
-              <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
-                Zaki Rafi
-              </h3>
+        <footer className="flex items-center justify-center px-4 py-10">
+          <div className="max-w-6xl w-full">
+            <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 md:p-10 border border-white/10">
+              <div className="flex flex-col items-center gap-4">
+                <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+                  Zaki Rafi
+                </h3>
 
-              <p className="text-gray-400 text-center text-sm">
-                AI-Driven Full Stack Developer | Membangun solusi web inovatif
-              </p>
+                <p className="text-gray-400 text-center text-sm">
+                  AI-Driven Full Stack Developer | Membangun solusi web inovatif
+                </p>
 
-              <div className="flex gap-4 mt-2">
-        {PLATFORMS.map((platform) => (
-          <a
-            key={platform}
-            href={getSafeLink(platform)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition-all duration-300"
-          >
-            {getSafeIcon(platform)}
-          </a>
-        ))}
-      </div>
+                <div className="flex gap-4 mt-2">
+                  {PLATFORMS.map((platform) => (
+                    <a
+                      key={platform}
+                      href={links[platform]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition-all duration-300"
+                    >
+                      {icons[platform]}
+                    </a>
+                  ))}
+                </div>
 
-              <div className="mt-4 text-sm text-gray-400">
-                © {new Date().getFullYear()} Zaki Rafi. All rights reserved.
+                <div className="mt-4 text-sm text-gray-400">
+                  © {new Date().getFullYear()} Zaki Rafi. All rights reserved.
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </footer>
       </div>
     </main>
   );
