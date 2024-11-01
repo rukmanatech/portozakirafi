@@ -1,20 +1,36 @@
 // pages/index.tsx
 
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { useState, useEffect } from 'react';
 import localProfileImg from '../public/foto.jpg';
 import imagePorto from '../public/image.png';
 import imagePorto2 from '../public/image2.png';
 import { FaGithub, FaInstagram, FaEnvelope, FaSun, FaMoon } from 'react-icons/fa';
 
+interface Skill {
+  name: string;
+  description: string;
+  icon: string;
+}
+
+interface Project {
+  title: string;
+  description: string;
+  stack: string[];
+  thumbnail: StaticImageData;
+  link: string;
+}
+
+type Theme = 'light' | 'dark';
+
 export default function Home() {
   const [isReadMore, setIsReadMore] = useState(false);
 
   // State untuk tema
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<Theme>('light');
 
   // State untuk modal proyek
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   // Efek untuk menambahkan atau menghapus kelas tema pada body
   useEffect(() => {
@@ -24,7 +40,7 @@ export default function Home() {
   }, [theme]);
 
   // Data Skills
-  const skills = [
+  const skills: Skill[] = [
     {
       name: 'AI Integration',
       description:
@@ -46,7 +62,7 @@ export default function Home() {
   ];
 
   // Data Projects
-  const projects = [
+  const projects: Project[] = [
     {
       title: 'Analisa Kesehatan Gigi',
       description:
