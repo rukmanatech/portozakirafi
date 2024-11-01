@@ -59,7 +59,7 @@ export default function Home() {
 
   const links: Record<Platform, string> = {
     GitHub: 'https://github.com/rukmanatech',
-    Instagram: 'https://instagram.com/zkirafi',
+    Instagram: 'https://instagram.com/zakirukmana',
     Email: 'mailto:rukmanazaki@gmail.com',
   };
 
